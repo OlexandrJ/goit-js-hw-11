@@ -18,7 +18,7 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 async function performSearch() {
-    const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`);
+    const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=40`);
     const data = await response.json();
     
     if (data.hits.length === 0) {
@@ -43,7 +43,7 @@ async function performSearch() {
             loadMoreBtn.style.display = 'block';
         }
 
-        if (page * 20 >= data.totalHits) {
+        if (page * 40 >= data.totalHits) {
             loadMoreBtn.style.display = 'none';
             gallery.innerHTML += "<p>We're sorry, but you've reached the end of search results.</p>";
         }
