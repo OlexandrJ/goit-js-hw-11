@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 const apiKey = '40243094-9cac1343afd7c4b92bc3dbcfd';
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
@@ -23,6 +25,7 @@ async function performSearch() {
     
     if (data.hits.length === 0) {
         gallery.innerHTML = '<p>Sorry, there are no images matching your search query. Please try again.</p>';
+        Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     } else {
         data.hits.forEach((image) => {
             const card = document.createElement('div');
