@@ -37,9 +37,11 @@ async function performSearch() {
             `;
             gallery.appendChild(card);
         });
+
         if (page === 1) {
             loadMoreBtn.style.display = 'block';
         }
+        
         if (page * 20 >= data.totalHits) {
             loadMoreBtn.style.display = 'none';
             gallery.innerHTML += "<p>We're sorry, but you've reached the end of search results.</p>";
