@@ -20,6 +20,7 @@ loadMoreBtn.addEventListener('click', async () => {
 async function performSearch() {
     const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`);
     const data = await response.json();
+    
     if (data.hits.length === 0) {
         gallery.innerHTML = '<p>Sorry, there are no images matching your search query. Please try again.</p>';
     } else {
@@ -37,9 +38,11 @@ async function performSearch() {
             `;
             gallery.appendChild(card);
         });
+
         if (page === 1) {
             loadMoreBtn.style.display = 'block';
         }
+
         if (page * 20 >= data.totalHits) {
             loadMoreBtn.style.display = 'none';
             gallery.innerHTML += "<p>We're sorry, but you've reached the end of search results.</p>";
