@@ -24,7 +24,6 @@ async function performSearch() {
     const data = await response.json();
     
     if (data.hits.length === 0) {
-        gallery.innerHTML = '<p>Sorry, there are no images matching your search query. Please try again.</p>';
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     } else {
         data.hits.forEach((image) => {
@@ -47,8 +46,8 @@ async function performSearch() {
         }
 
         if (page * 40 >= data.totalHits) {
-            loadMoreBtn.style.display = 'none';
-            gallery.innerHTML += "<p>We're sorry, but you've reached the end of search results.</p>";
+    loadMoreBtn.style.display = 'none';
+    Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
         }
     }
 }
